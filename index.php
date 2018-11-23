@@ -15,7 +15,8 @@ if (!isset($_SESSION['id'])) {
 // Tiap masuk ke halaman, akan selalu di refresh waktu nya.
 // Jik pengguna diem aja sampai waktu habis, maka akan di matikan session nya.
 $_SESSION['waktu'] = time();
-$sql               = $koneksi->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '$_SESSION[id]'");
+$sessionId = esc($_SESSION['id']);
+$sql               = $koneksi->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '$sessionId'");
 $data              = $sql->fetch_assoc();
 include ('tata_letak/atas.php');
 ?>
@@ -63,6 +64,9 @@ include ('tata_letak/atas.php');
                 if ($aksi == "tambah"){
                     include "halaman/admin/pelajar/tambah.php";
                 }
+                if ($aksi == "import"){
+                    include "halaman/admin/pelajar/import.php";
+                }
                 if ($aksi == "hapus"){
                     include "halaman/admin/pelajar/hapus.php";
                 }
@@ -89,8 +93,8 @@ include ('tata_letak/atas.php');
                 if ($aksi == "pindai"){
                     include "halaman/admin/piket/pindai.php";
                 }
-                if ($aksi == "terimainput"){
-                    include "halaman/admin/piket/terima_input.php";
+                if ($aksi == "bulkinsert"){
+                    include "halaman/admin/piket/bulk_insert.php";
                 }
             }
             ?>

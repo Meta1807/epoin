@@ -1,3 +1,4 @@
+<?php include('profilepic.php'); ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -52,6 +53,7 @@
                     </li>
                     <h3 class="menu-title">Guru</h3><!-- /.menu-title -->
                     <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Piket</a></li>
+                    <li><a href="?halaman=piket&aksi=bulkinsert"> <i class="menu-icon fa fa-pencil"></i> Bulk Insert</a></li>
                     <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>
@@ -80,15 +82,14 @@
                 <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
-                    <div class="dropdown for-notification">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#authorModal">
-                            <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
-                          </button>
-                          </div>
-                            <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button">
+                                <i class="fa fa-bell"></i>
+                            </button>
                         </div>
+                        <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
                     </div>
+                </div>
 
                 <!-- Rafi Priatna -->
                 <div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="authorModalLabel" aria-hidden="true">
@@ -116,7 +117,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="gambar/profil/guru/<?php echo $data['foto_pengguna']?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php echo getProfile($data['foto_pengguna']); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">

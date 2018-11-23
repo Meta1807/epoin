@@ -45,8 +45,7 @@
                 while ($pengguna = $sql->fetch_assoc()){
                 ?>
                     <tr>
-                        <td><img src="gambar/profil/guru/<?php echo $pengguna['foto_pengguna']?>"
-                        width="50" height="50"></td>
+                        <td><img src="<?php echo getProfile($pengguna['foto_pengguna']); ?>" height="50px" width="50px"></td>
                         <td><?php echo $pengguna['nama_pengguna']?></td>
                         <td><?php echo $pengguna['telp_pengguna']?></td>
                         <td><?php echo $pengguna['surel_pengguna']?></td>

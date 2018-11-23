@@ -1,16 +1,14 @@
 <?php
-include ('konfigurasi/koneksi.php');
-if($_POST["simpan"] == "mindai bre"){
-    $pindai  = $_POST['pindai'];
+if(isset($_POST["simpan"])){
+    $pindai  = esc_trim($_POST['pindai']);
     $sql     = $koneksi->query("SELECT * FROM tb_pelajar WHERE nis_pelajar = '$pindai'");
     $hasil   = $sql->fetch_assoc();
-    $tujuan  = $hasil['nis_pelajar'];
+    $tujuan  = $hasil['id_pelajar'];
     $cek     = $sql->num_rows;
-
     if($cek){
         ?>
             <script type="text/javascript">
-                window.location.href = "?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
+                window.location.href = "index.php?halaman=piket&aksi=pindai&id=<?php echo $tujuan;?>";
             </script>
         <?php
     } else{
@@ -24,17 +22,16 @@ if($_POST["simpan"] == "mindai bre"){
 } 
 ?>
 <?php
-if($_POST["namasiswa"] == "mindai bre"){
-    $pindai  = $_POST['nama_pelajar'];
-    $sql     = $koneksi->query("SELECT nis_pelajar FROM tb_pelajar WHERE nama_pelajar = UPPER('$pindai')");
+if(isset($_POST["namasiswa"])){
+    $pindai  = esc_trim($_POST['nama_pelajar']);
+    $sql     = $koneksi->query("SELECT id_pelajar FROM tb_pelajar WHERE nama_pelajar = UPPER('$pindai')");
     $hasil   = $sql->fetch_assoc();
-    $tujuan  = $hasil['nis_pelajar'];
+    $tujuan  = $hasil['id_pelajar'];
     $cek     = $sql->num_rows;
-
     if($cek){
         ?>
             <script type="text/javascript">
-                window.location.href = "?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
+                window.location.href = "index.php?halaman=piket&aksi=pindai&id=<?php echo $tujuan;?>";
             </script>
         <?php
     } else{

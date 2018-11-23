@@ -1,16 +1,8 @@
+
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-   <!-- Including our scripting file. -->
 
-<script type="text/javascript" src="halaman/admin/piket/script.js"></script>
-<script>
-	function Result1() {
-	var resultID = jQuery(this).attr("id");
-	document.getElementById("namapelajar").value = $(resultID).text();
-	$('#display').html('');
-	}
-</script>
 <div class="content mt-3">
     <div class="row">
         <div class="col-md-6">
@@ -20,17 +12,17 @@
                 </div>
                 <div class="card-body">
                     Silakan pindai kartu pelajar atau ketik manual NIS.<br /><br />
-                    <form method="POST" action="index.php?halaman=piket&aksi=terimainput" class="col-sm-3">
+                    <form id="inputnis" method="POST" action="api.php?halaman=piket&aksi=terimainput" class="col-sm-6">
                         <div class="form-group">
                             <input name="pindai" type="number" class="form-control" required autofocus />
                         </div>
+                    </form>
                 </div>
                 <div class="card-footer">
-                    <button value="mindai bre" name="simpan" type="submit" class="btn btn-primary btn-sm">
+                    <button form="inputnis" name="simpan" type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-sign-in"></i> Pindai
                     </button>
                 </div>
-                </form>
             </div>
         </div>
         <div class="col-md-6">
@@ -40,19 +32,51 @@
                 </div>
                 <div class="card-body">
                     Cari siswa berdasarkan Nama<br /><br />
-                    <form method="POST" action="index.php?halaman=piket&aksi=terimainput" class="col-sm-6">
+                    <form id="inputnama" method="POST" action="api.php?halaman=piket&aksi=terimainput" class="col-sm-12">
                         <div class="form-group">
-                            <input name="nama_pelajar" id="namapelajar" class="form-control" placeholder="Cari nama" autocomplete="off" />
+                            <input name="nama_pelajar" id="namapelajar" class="form-control" placeholder="Cari nama" autocomplete="off">
                         </div>
-			<div id="display"></div>
+                    </form>
+			        <div id="display" style="position: absolute; background-color: white; padding: 5px 10px 0px 15px; top: 160px; margin: auto; left: 30px; border: 1px solid #ced4da;"></div>
                 </div>
                 <div class="card-footer">
-                    <button value="mindai bre" name="namasiswa" type="submit" class="btn btn-primary btn-sm">
+                    <button form="inputnama" name="namasiswa" type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-sign-in"></i> Pindai
                     </button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
+
+		<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+							<div class="card-header">
+									<strong class="card-title">Izin Valid</strong>
+							</div>
+							<div class="card-body card-block" id="izin-dynamic">
+							</div>
+					</div>
+				</div>
+		</div>
+
+   <!-- Including our scripting file. -->
+
+<script type="text/javascript" src="halaman/admin/piket/script.js"></script>
+<script>
+	function Result(element) {
+    var nama = element.textContent;
+	document.getElementById("namapelajar").value = nama;
+	$('#display').html('');
+	}
+</script>
+<style>
+#display:empty {
+	display:none;
+}
+#display {
+  z-index: 500;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+</style>
